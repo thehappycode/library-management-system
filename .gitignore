@@ -1,32 +1,109 @@
 # Maven
 target/
 pom.xml.tag
-pom.xml. releaseBackup
+pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
+dependency-reduced-pom.xml
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
 
 # Gradle
-. gradle
+.gradle
 build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-# IDE
+# IDE - IntelliJ IDEA
 .idea/
-*. iml
-*. iws
+*.iml
+*.iws
+*.ipr
+out/
+
+# IDE - Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# IDE - VS Code
 .vscode/
+*.code-workspace
+
+# IDE - NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Editor backups
 *.swp
 *.swo
 *~
+*.bak
+*.tmp
+*.orig
 
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+Desktop.ini
 
 # Logs
 *.log
 logs/
+*.log.*
+*.gz
 
 # Environment
 .env
 .env.local
+.env.*.local
+application-local.yml
+application-local.properties
+
+# Docker
+*.pid
+*.seed
+*.pid.lock
+
+# Test coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# Temporary files
+tmp/
+temp/
+*.cache
+
+# Spring Boot
+spring-boot-devtools.properties
+
+# Kubernetes secrets
+*-secret.yaml
+secrets/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Helm
+charts/*.tgz
+*.lock
+
+# Generated files
+generated/
+generated-sources/
+generated-test-sources/
