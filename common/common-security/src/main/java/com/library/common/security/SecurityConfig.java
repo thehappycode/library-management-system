@@ -36,14 +36,17 @@ public abstract class SecurityConfig {
      * 
      * Default configuration:
      * - Stateless session management
-     * - CSRF disabled (for REST APIs)
+     * - CSRF disabled (for REST APIs with JWT authentication)
      * - CORS enabled
+     * 
+     * Note: CSRF is disabled as this is intended for stateless REST APIs using JWT tokens.
+     * Services using session-based authentication should override this and enable CSRF.
      * 
      * Override this method in service-specific config and customize as needed
      */
     protected HttpSecurity configureHttpSecurity(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf.disable())  // Disabled for stateless JWT APIs
                 .cors(cors -> cors.configure(http))
                 .sessionManagement(session -> 
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
