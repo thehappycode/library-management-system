@@ -12,6 +12,7 @@
 ## 📖 Table of Contents
 
 - [Overview](#-overview)
+- [Monorepo Structure](#-monorepo-structure)
 - [Architecture](#-architecture)
 - [Technology Stack](#-technology-stack)
 - [Microservices](#-microservices)
@@ -36,6 +37,60 @@ Library Management System là một hệ thống quản lý thư viện đầy �
 - 📊 **Analytics & Reporting**: Borrowing statistics, popular books
 - 🔐 **Security**: JWT authentication, role-based access control
 - 🌐 **Multi-tenant**: Support multiple library branches
+
+---
+
+## 📦 Monorepo Structure
+
+This project uses a **monorepo architecture** with all microservices, common libraries, and infrastructure components in a single repository.
+
+### Project Structure
+
+```
+library-management-system/
+├── common/                          # Shared libraries
+│   ├── common-dto/                  # Data Transfer Objects
+│   ├── common-exception/            # Exception handling
+│   ├── common-util/                 # Utility classes
+│   ├── common-security/             # Security components (JWT, etc.)
+│   └── common-event/                # Domain events
+├── services/                        # Microservices
+│   ├── auth-service/               # Authentication & Authorization
+│   ├── book-service/               # Book management
+│   ├── user-service/               # User management
+│   ├── borrowing-service/          # Borrowing operations
+│   ├── notification-service/       # Notifications
+│   └── saga-orchestrator-service/  # Distributed transactions
+├── infrastructure/                  # Infrastructure services
+│   ├── api-gateway/                # Spring Cloud Gateway
+│   ├── service-discovery/          # Eureka Server
+│   └── config-server/              # Spring Cloud Config
+├── k8s/                            # Kubernetes manifests
+├── helm/                           # Helm charts
+├── terraform/                      # Infrastructure as Code
+├── observability/                  # Monitoring configs
+├── docs/                           # Documentation
+│   ├── architecture/
+│   ├── api/
+│   ├── adr/
+│   └── runbooks/
+├── scripts/                        # Utility scripts
+│   ├── build-all.sh
+│   ├── start-all.sh
+│   ├── stop-all.sh
+│   ├── test-all.sh
+│   └── docker-build-all.sh
+├── docker-compose.yml              # Local development
+└── pom.xml                         # Parent POM
+```
+
+### Benefits of Monorepo
+
+- ✅ **Simplified Dependency Management**: All services use the same versions
+- ✅ **Atomic Changes**: Cross-service changes in single commit
+- ✅ **Code Reuse**: Shared libraries easily accessible
+- ✅ **Consistent Tooling**: Same build, test, and deployment process
+- ✅ **Better Collaboration**: Easier code reviews across services
 
 ---
 
@@ -265,32 +320,34 @@ service/
 
 ### Service Portfolio
 
-| Service | Port | Repository | Status | Description |
-|---------|------|-----------|--------|-------------|
-| **Auth Service** | 8080 | [auth-service](https://github.com/library-management-system/auth-service) | 🔄 Planning | Authentication & Authorization (JWT, OAuth2) |
-| **Book Service** | 8081 | [book-service](https://github.com/library-management-system/book-service) | 🔄 Planning | Book CRUD, Category, Inventory, Search |
-| **User Service** | 8082 | [user-service](https://github.com/library-management-system/user-service) | 🔄 Planning | User Management, Profile, Roles |
-| **Borrowing Service** | 8083 | [borrowing-service](https://github.com/library-management-system/borrowing-service) | 🔄 Planning | Borrow/Return, History, Fines |
-| **Notification Service** | 8084 | [notification-service](https://github.com/library-management-system/notification-service) | 🔄 Planning | Email/SMS Notifications |
-| **Saga Orchestrator** | 8085 | [saga-orchestrator-service](https://github.com/library-management-system/saga-orchestrator-service) | 🔄 Planning | Distributed Transaction Management |
-| **API Gateway** | 8000 | [api-gateway](https://github.com/library-management-system/api-gateway) | 🔄 Planning | Gateway, Routing, Rate Limiting |
-| **Service Discovery** | 8761 | [service-discovery](https://github.com/library-management-system/service-discovery) | 🔄 Planning | Eureka Server |
-| **Config Server** | 8888 | [config-server](https://github.com/library-management-system/config-server) | 🔄 Planning | Centralized Configuration |
+| Service | Port | Path | Status | Description |
+|---------|------|------|--------|-------------|
+| **Auth Service** | 8080 | `services/auth-service` | ✅ Structure | Authentication & Authorization (JWT, OAuth2) |
+| **Book Service** | 8081 | `services/book-service` | ✅ Structure | Book CRUD, Category, Inventory, Search |
+| **User Service** | 8082 | `services/user-service` | ✅ Structure | User Management, Profile, Roles |
+| **Borrowing Service** | 8083 | `services/borrowing-service` | ✅ Structure | Borrow/Return, History, Fines |
+| **Notification Service** | 8084 | `services/notification-service` | ✅ Structure | Email/SMS Notifications |
+| **Saga Orchestrator** | 8085 | `services/saga-orchestrator-service` | ✅ Structure | Distributed Transaction Management |
+| **API Gateway** | 8000 | `infrastructure/api-gateway` | ✅ Structure | Gateway, Routing, Rate Limiting |
+| **Service Discovery** | 8761 | `infrastructure/service-discovery` | ✅ Structure | Eureka Server |
+| **Config Server** | 8888 | `infrastructure/config-server` | ✅ Structure | Centralized Configuration |
 
-### Supporting Repositories
+### Common Libraries
 
-| Repository | Description | Status |
-|-----------|-------------|--------|
-| [common-libraries](https://github.com/library-management-system/common-libraries) | Shared DTOs, Exceptions, Utils | 🔄 Planning |
-| [infrastructure](https://github.com/library-management-system/infrastructure) | K8s Manifests, Helm Charts, Terraform | 🔄 Planning |
-| [documentation](https://github.com/library-management-system/documentation) | Architecture Docs, API Specs, Runbooks | 🔄 Planning |
+| Library | Path | Description |
+|---------|------|-------------|
+| **common-dto** | `common/common-dto` | Shared DTOs and response models |
+| **common-exception** | `common/common-exception` | Exception classes and handlers |
+| **common-util** | `common/common-util` | Utility classes |
+| **common-security** | `common/common-security` | JWT utilities and security configs |
+| **common-event** | `common/common-event` | Domain events for event-driven architecture |
 
 **Status Legend:**
-- 🔄 Planning
-- 🚧 In Progress
-- ✅ Completed
-- 🧪 Testing
-- 🚀 Deployed
+- ✅ Structure - Project structure and configuration complete
+- 🚧 In Progress - Implementation in progress
+- ✅ Completed - Feature complete and tested
+- 🧪 Testing - Under testing
+- 🚀 Deployed - Deployed to production
 
 ---
 
@@ -303,61 +360,99 @@ service/
 - Java 21
 - Maven 3.9+
 - Docker & Docker Compose
-- kubectl
-- Helm 3+
 
 # Optional (for local development)
+- kubectl
+- Helm 3+
 - Minikube or Kind (local K8s)
-- Istioctl
-- Kafka CLI tools
 ```
 
 ### Quick Start (Local Development)
 
+#### 1. Clone the Repository
+
 ```bash
-# 1. Clone all repositories
-git clone https://github.com/library-management-system/library-management-system.git
+git clone https://github.com/thehappycode/library-management-system.git
 cd library-management-system
-
-# 2. Start infrastructure services
-docker-compose up -d
-
-# 3. Build all services
-./scripts/build-all.sh
-
-# 4. Run all services
-./scripts/start-all.sh
-
-# 5. Access services
-# API Gateway: http://localhost:8000
-# Eureka Dashboard: http://localhost:8761
-# Swagger UI: http://localhost:8000/swagger-ui.html
 ```
 
-### Docker Compose (All Services)
+#### 2. Start Infrastructure Services
 
 ```bash
-# Start all services with dependencies
-docker-compose -f docker-compose.yml up -d
+# Start databases, message brokers, and monitoring
+docker-compose up -d
 
-# View logs
-docker-compose logs -f
+# Verify all containers are running
+docker-compose ps
+```
 
+#### 3. Build All Services
+
+```bash
+# Build common libraries and all microservices
+./scripts/build-all.sh
+```
+
+#### 4. Start All Services
+
+```bash
+# Start services in correct order
+./scripts/start-all.sh
+
+# Logs are available in logs/ directory
+tail -f logs/book-service.log
+```
+
+#### 5. Access Services
+
+- **API Gateway**: http://localhost:8000
+- **Eureka Dashboard**: http://localhost:8761
+- **Service-specific Swagger UIs**: 
+  - Book Service: http://localhost:8081/swagger-ui.html
+  - Auth Service: http://localhost:8080/swagger-ui.html
+- **Monitoring**:
+  - Prometheus: http://localhost:9090
+  - Grafana: http://localhost:3000 (admin/admin)
+  - Jaeger: http://localhost:16686
+
+### Stop Services
+
+```bash
 # Stop all services
+./scripts/stop-all.sh
+
+# Stop Docker containers
 docker-compose down
 ```
 
-### Kubernetes Deployment
+### Build Specific Service
 
 ```bash
-# Install with Helm
-helm install library-system ./infrastructure/helm/library-system
+# Build only book-service and its dependencies
+mvn clean package -pl services/book-service -am
 
-# Or with kubectl
-kubectl apply -f ./infrastructure/k8s/
+# Run specific service
+mvn spring-boot:run -pl services/book-service
+```
 
-# Check status
-kubectl get pods -n library-system
+### Run Tests
+
+```bash
+# Test all services
+./scripts/test-all.sh
+
+# Test specific service
+mvn test -pl services/book-service
+```
+
+### Build Docker Images
+
+```bash
+# Build all Docker images
+./scripts/docker-build-all.sh
+
+# Build specific service image
+docker build -t library/book-service:latest -f services/book-service/Dockerfile .
 ```
 
 ---

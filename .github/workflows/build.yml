@@ -1,0 +1,41 @@
+name: Build and Test
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: maven
+    
+    - name: Build common libraries
+      run: mvn clean install -pl common/common-dto,common/common-exception,common/common-util,common/common-security,common/common-event -am
+    
+    - name: Build microservices
+      run: mvn clean package -pl services/auth-service,services/book-service,services/user-service,services/borrowing-service,services/notification-service,services/saga-orchestrator-service -am -DskipTests
+    
+    - name: Build infrastructure services
+      run: mvn clean package -pl infrastructure/api-gateway,infrastructure/service-discovery,infrastructure/config-server -am -DskipTests
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifacts
+        path: |
+          */target/*.jar
+          !*/target/*-sources.jar
+          !*/target/*-javadoc.jar
+        retention-days: 7
