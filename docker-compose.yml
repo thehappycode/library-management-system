@@ -10,7 +10,7 @@ services:
     image: mysql:8.0
     container_name: mysql-auth
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-changeMe123!}
       MYSQL_DATABASE: auth_db
     ports:
       - "3307:3306"
@@ -29,7 +29,7 @@ services:
     image: mysql:8.0
     container_name: mysql-book
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-changeMe123!}
       MYSQL_DATABASE: book_db
     ports:
       - "3308:3306"
@@ -48,7 +48,7 @@ services:
     image: mysql:8.0
     container_name: mysql-user
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-changeMe123!}
       MYSQL_DATABASE: user_db
     ports:
       - "3309:3306"
@@ -67,7 +67,7 @@ services:
     image: mysql:8.0
     container_name: mysql-borrowing
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-changeMe123!}
       MYSQL_DATABASE: borrowing_db
     ports:
       - "3310:3306"
@@ -87,7 +87,7 @@ services:
     container_name: mongodb
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-changeMe123!}
     ports:
       - "27017:27017"
     volumes:

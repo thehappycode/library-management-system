@@ -52,7 +52,7 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: "*"
+            allowedOrigins: ${ALLOWED_ORIGINS:http://localhost:3000,http://localhost:4200}
             allowedMethods:
               - GET
               - POST
@@ -60,7 +60,7 @@ spring:
               - DELETE
               - OPTIONS
             allowedHeaders: "*"
-            allowCredentials: false
+            allowCredentials: true
       
       # Default filters
       default-filters:

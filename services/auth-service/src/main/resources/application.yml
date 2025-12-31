@@ -29,7 +29,7 @@ eureka:
     prefer-ip-address: true
 
 jwt:
-  secret: ${JWT_SECRET:my-256-bit-secret-key-for-jwt-token-generation-must-be-long-enough}
+  secret: ${JWT_SECRET}  # REQUIRED: Set via environment variable
   expiration: 3600000  # 1 hour
   refresh-expiration: 86400000  # 24 hours
 
