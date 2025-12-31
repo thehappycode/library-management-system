@@ -463,7 +463,7 @@ docker build -t library/book-service:latest -f services/book-service/Dockerfile 
 
 #### Architecture & Setup
 - [ x ] Create GitHub Organization
-- [ ] Setup all repositories
+- [ x ] Setup all repositories
 - [ ] Define API contracts (OpenAPI)
 - [ ] Setup common libraries
 - [ ] Create parent POM
