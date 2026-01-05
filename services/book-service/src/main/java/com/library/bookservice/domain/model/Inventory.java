@@ -1,6 +1,5 @@
 package com.library.bookservice.domain.model;
 
-import jakarta.persistence.criteria.CriteriaBuilder.In;
 import lombok.Value;
 
 /**
