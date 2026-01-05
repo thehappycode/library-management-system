@@ -1,4 +1,4 @@
-package com.library.book;
+package com.library.bookservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 /**
  * Book Service Application
  * 
- * Microservice responsible for managing book catalog, inventory, and search operations.
+ * Microservice responsible for managing book catalog, inventory, and search
+ * operations.
  * 
  * Features:
  * - Book CRUD operations
@@ -28,7 +29,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing
 @EnableCaching
 public class BookServiceApplication {
-    
+
     public static void main(String[] args) {
         SpringApplication.run(BookServiceApplication.class, args);
     }
