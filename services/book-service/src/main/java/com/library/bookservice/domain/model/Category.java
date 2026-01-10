@@ -50,6 +50,26 @@ public class Category {
     }
 
     /**
+     * Factory method to reconstruct Category from database
+     */
+    public static Category reconstruct(
+            Long id,
+            String name,
+            String description,
+            LocalDateTime createdAt,
+            LocalDateTime updatedAt) {
+
+        Category category = new Category();
+        category.id = id;
+        category.name = name;
+        category.description = description;
+        category.createdAt = createdAt;
+        category.updatedAt = updatedAt;
+
+        return category;
+    }
+
+    /**
      * Update category details
      * 
      * @param name        New category name
