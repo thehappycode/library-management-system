@@ -20,7 +20,7 @@
 
     <dependencies>
         <!-- Common Libraries -->
-        <dependency>
+        <!-- <dependency>
             <groupId>com.library</groupId>
             <artifactId>common-dto</artifactId>
         </dependency>
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>com.library</groupId>
             <artifactId>common-event</artifactId>
-        </dependency>
+        </dependency> -->
 
         <!-- Spring Boot Starters -->
         <dependency>
@@ -64,20 +64,20 @@
         </dependency>
 
         <!-- Spring Cloud -->
-        <dependency>
+        <!-- <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
+        </dependency> -->
 
         <!-- Kafka -->
-        <dependency>
+        <!-- <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
-        </dependency>
+        </dependency> -->
 
         <!-- Database -->
         <dependency>
@@ -87,10 +87,10 @@
         </dependency>
 
         <!-- Redis -->
-        <dependency>
+        <!-- <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
+        </dependency> -->
 
         <!-- Flyway -->
         <dependency>

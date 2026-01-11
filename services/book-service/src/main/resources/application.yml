@@ -8,9 +8,9 @@ spring:
 
   # Database Configuration
   datasource:
-    url: jdbc:mysql://localhost:3306/book_db?createDatabaseIfNotExist=true
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:password}
+    url: jdbc:mysql://localhost:3307/bookdb?createDatabaseIfNotExist=true
+    username: ${DB_USERNAME:libuser}
+    password: ${DB_PASSWORD:libpassword}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   # JPA Configuration
@@ -30,45 +30,45 @@ spring:
     baseline-on-migrate: true
 
   # Redis Configuration
-  cache:
-    type: redis
+  # cache:
+  #   type: redis
 
-  data:
-    redis:
-      host: ${REDIS_HOST:localhost}
-      port: ${REDIS_PORT:6379}
+  # data:
+  #   redis:
+  #     host: ${REDIS_HOST:localhost}
+  #     port: ${REDIS_PORT:6379}
 
   # Kafka Configuration
-  kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-    consumer:
-      group-id: book-service-group
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring.json.trusted.packages: "*"
+  # kafka:
+  #   bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+  #   producer:
+  #     key-serializer: org.apache.kafka.common.serialization.StringSerializer
+  #     value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  #   consumer:
+  #     group-id: book-service-group
+  #     key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  #     value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+  #     properties:
+  #       spring.json.trusted.packages: "*"
 
 # Eureka Configuration
-eureka:
-  client:
-    service-url:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-    fetch-registry: true
-    register-with-eureka: true
-  instance:
-    prefer-ip-address: true
+# eureka:
+#   client:
+#     service-url:
+#       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+#     fetch-registry: true
+#     register-with-eureka: true
+#   instance:
+#     prefer-ip-address: true
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,metrics,prometheus
-  endpoint:
-    health:
-      show-details: always
+# management:
+#   endpoints:
+#     web:
+#       exposure:
+#         include: health,info,metrics,prometheus
+#   endpoint:
+#     health:
+#       show-details: always
 
 # Swagger/OpenAPI Configuration
 springdoc:
